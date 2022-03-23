@@ -19,8 +19,7 @@ const Login = (props) => {
        .then((res) => {
            console.log('response', res);
            setContext(res[0]);
-           console.log('state login:',context);
-           router.push('/posts')
+           router.push('/feed')
          })
          .catch((error) => {
              setError(error);
