@@ -1,0 +1,29 @@
+.container {
+  /* Center the content */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* Take full size */
+  height: 100vh;
+  width: 100%;
+
+  /* Background */
+  background: url("../../assets/background.jpg") center center / cover
+    no-repeat;
+}
+
+.menu {
+  border-radius: 10px;
+  background-color: crimson;
+  box-shadow: 2px 2px 20px black;
+}
+
+.center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: auto;
+}

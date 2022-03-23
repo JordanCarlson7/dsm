@@ -1,0 +1,30 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+
+    /* Border */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    /* position: fixed; things underneath float*/
+    /* width: 100%; */
+}
+
+.menu__item {
+    /* Center the content horizontally */
+    align-items: center;
+    display: flex;
+    padding: 5px;
+}
+
+.menu__hotkey {
+    /* Push the hot key to the right */
+    margin-left: auto;
+}
+
+.menu__divider {
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    height: 1px;
+}
+
+.menu__item:hover {
+    background-color: aqua;
+}
