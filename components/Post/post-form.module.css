@@ -1,0 +1,38 @@
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: auto;
+
+  /* Take full size */
+  height: 100vh;
+  width: 100%;
+
+  /* Background */
+  background: url('/assets/full-background.jpeg') center center / cover no-repeat;
+}
+
+.formContainer {
+    align-items: center;
+  display: flex;
+  justify-content: center;
+  
+  flex-direction: column;
+}
+
+
+.text {
+  /* Lined background */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 0px);
+  background-size: 100% 2em;
+  border: none;
+
+  /*
+Display the content on top of the lines.
+The line height must be the same as the background size defined above
+*/
+  background-position-y: 24px;
+  line-height: 2em;
+  margin: 20px;
+}

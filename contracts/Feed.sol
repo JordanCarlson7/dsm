@@ -43,10 +43,11 @@ contract Feed {
         return posts;
     }
 
-    function createPost(string memory _author, string memory _title, string memory _content) public {
+    function createPost(string memory _author, string memory _title, string memory _content) public returns (Post memory) {
         _postIds.increment();
         uint id = _postIds.current();
         postsById[id] = Post(id, _author, _title, _content);
+        return postsById[id];
         // Post memory currentPost = postsById[id];
         // console.log("Created post:", id, currentPost);
     }

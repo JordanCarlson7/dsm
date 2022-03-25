@@ -1,0 +1,17 @@
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: xx-large;
+    right: 0;
+    position: fixed;
+    top: 50%;
+    transform: translate(0px, -50%);
+    background-color: aqua;
+    width: 3%;
+    height: 10rem;
+}
+.container:hover {
+    cursor: pointer;
+}
