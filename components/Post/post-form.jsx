@@ -20,9 +20,7 @@ const PostForm = (props) => {
   const titleEl = useRef(null);
   const contentEl = useRef(null);
   const contract = new ethers.Contract(contractAddress, Feed.abi, signer); // need a signer to send transaction
-  // const [post, setPost] = useState({id: 0, author: context, title: 'NO TITLE', content: 'NO CONTENT'});
   let post = {
-    // id: 0,
     author: "NO AUTHOR",
     title: "NO TITLE",
     content: "NO CONTENT",
@@ -30,6 +28,7 @@ const PostForm = (props) => {
   console.log(contract);
   console.log("account: ", context);
   
+  //Saves post and hash to contract
   async function savePostContract(hash) {
     try {
       const res = await contract.createPost( //contract will handle ids
@@ -38,19 +37,18 @@ const PostForm = (props) => {
         post.content,
         hash.path,
         post.alias
-      ); // hash needs to be an arguement
+      ); 
       console.log("CONTRACT CREATEPOST (SUCCESS)", res);
     } catch (err) {
       console.log("CONTRACT CREATEPOST (ERROR)", err);
     }
-    // const temp = await contractTEMP.viewData()
-    //   setPosts(temp)
     console.log("Add Post", post);
     await props.reset();
     props.setEdit(false);
-    // router.push('/feed');
+    router.push('/feed');
   }
 
+  //gets ipfs hash
   async function hashIpfs() {
     try {
       //store post data in IPFS and get hash address back
@@ -62,6 +60,7 @@ const PostForm = (props) => {
     }
   }
 
+  //initiate storage on contract and IPFS
   async function submitPostHandler($event) {
     event.preventDefault();
     console.log("IN SUBMIT");
@@ -71,11 +70,10 @@ const PostForm = (props) => {
     post.alias = context.alias;
     console.log('POST -> ', post)
 
+    //get hash identifier for data saved in IPFS
     const hash = await hashIpfs();
     await savePostContract(hash).then((res) => {
       console.log('await', res)
-    // console.log('finished no re-fetching server data')
-    // router.replace(router.asPath);
     })
   }
 

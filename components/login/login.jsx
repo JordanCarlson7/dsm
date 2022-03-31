@@ -3,27 +3,23 @@ import { useState, useContext, useRef, Fragment } from "react";
 import { AccountContext } from "../../store/context";
 import classes from "./login.module.css";
 import { createClient } from "urql";
-import { ethers } from "ethers";
-import { contractAddress, ownerAddress } from "../../config";
-import Feed from "../../artifacts/contracts/Feed.sol/Feed.json";
-
-// import { useState, useContext } from "react";
-// import { AccountContext } from "../../store/context";
 
 const Login = (props) => {
-  /******************* */
+  /*******************HOOKS */
   const [context, setContext] = useContext(AccountContext);
   const [getAlias, setGetAlias] = useState(false);
   const [userAddress, setUserAddress] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const inputAlias = useRef(null);
   const router = useRouter();
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   let address;
 
-  /******************* */
+  /*******************HOOKS */
 
   /****************HANDLERS***************************/
   const forwardFeed = () => {
+    //logs user in with alias
     const aliasInput = inputAlias.current.value;
     console.log(address)
     console.log(userAddress)
@@ -31,6 +27,7 @@ const Login = (props) => {
     setGetAlias(false);
     router.push("/feed");
   }
+  //see if user is already in the system
   const aliasHandler = async () => {
     const APIURL =
       "https://api.thegraph.com/subgraphs/name/jordancarlson7/dsm?version=current";
@@ -48,6 +45,7 @@ const Login = (props) => {
       url: APIURL,
     });
 
+    //determine to move forward or not based on user alias
     const dataGraph = await client.query(tokensQuery).toPromise();
     console.log("LOGIN: GRAPH: ", dataGraph);
     if (dataGraph.data.newPosts.length == 0) {
@@ -58,11 +56,14 @@ const Login = (props) => {
       const alias = dataGraph.data.newPosts[0].name;
       console.log(alias);
       setContext({ address: address, alias: alias });
+      // setIsLoading(false);
       router.push("/feed");
     }
   };
 
+  //access to the Web3 provider in the browser. (Extension: Metamask)
   const metamaskHandler = () => {
+    setIsLoading(true);
     if (window.ethereum) {
       window.ethereum
         .request({ method: "eth_requestAccounts" })
@@ -75,7 +76,6 @@ const Login = (props) => {
           aliasHandler();
         })
         .catch((error) => {
-          setError(error);
           console.log(error);
         });
     } else {
@@ -86,6 +86,7 @@ const Login = (props) => {
 
   return (
     <div className={classes.container}>
+      {isLoading && 'Loading...'}
       <div className={classes.menu}>
         <h1>Welcome to Decentralized Social Media</h1>
         <h2>{!getAlias && 'Please login with Metamask* to continue'}

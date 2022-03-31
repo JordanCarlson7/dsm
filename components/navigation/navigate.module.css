@@ -25,6 +25,16 @@
     padding: 5px;
     padding-left: 10px;
 }
+.menu__home {
+    /* Center the content horizontally */
+    align-items: center;
+    display: flex;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    color: #f6c624
+}
 .menu__item__right {
     /* Center the content horizontally */
     align-items: center;
@@ -46,7 +56,7 @@
     height: 1px;
 }
 
-.menu__item:hover, .btn:hover{
+.menu__item:hover, .btn:hover, .menu__home:hover{
     background-color: #f69000;
     color: #11222c;
     cursor: pointer;

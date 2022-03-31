@@ -9,8 +9,6 @@
   height: 100vh;
   width: 100%;
 
-  /* Background */
-  background: url('/assets/full-background.jpeg') center center / cover no-repeat;
 }
 
 .formContainer {

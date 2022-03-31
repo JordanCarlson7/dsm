@@ -15,7 +15,7 @@ const Navigate = () => {
 
   return (
     <div className={classes.menu}>
-      <div className={classes.menu__item}>
+      <div className={classes.menu__home}>
         <Link href="https://github.com/JordanCarlson7/dsm">Decentralized Social Media</Link>
       </div>
       <div className={classes.menu__item}>

@@ -1,39 +1,31 @@
 /*********IMPORTS */
-import { useContext, Fragment, useState, useEffect } from "react";
-import { css } from "@emotion/css";
-import { useRouter } from "next/router";
+import {useState} from "react";
 import { ethers } from "ethers";
-import Link from "next/link";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { createClient } from "urql";
+import { createClient} from "urql";
 /*******CONTRACT */
-import { contractAddress, ownerAddress } from "../../config";
+import { contractAddress } from "../../config";
 import Feed from "../../artifacts/contracts/Feed.sol/Feed.json";
 /*******CONTRACT */
 /*******COMPONENTS */
 import FeedCom from "../../components/Feed/feed-com";
 import NewButton from "../../components/Post/new-button";
-/*******COMPONENTS */
 import PostForm from "../../components/Post/post-form";
+/*******COMPONENTS */
 /*********IMPORTS */
 /**************PAGE */
 function Posts(props) {
   const { initialPosts, graph } = props;
-  // const reverse = graph.data.newPosts.sort((a, b) => {
-  //   return a.id - b.id;
-  // });
   const length = initialPosts.length;
-  // const [posts, setPosts] = useState(reverse);
   const [graphArray, setGraphArray] = useState(graph.data.newPosts);
   const [isModal, setIsModal] = useState(false);
+
   console.log(initialPosts);
   console.log("GRAPH: ", graphArray);
 
   /**********GRAPH************************ */
-  const refreshData = async () => {
-    const APIURL =
-      "https://api.thegraph.com/subgraphs/name/jordancarlson7/dsm?version=current";
-
+  const refreshData = async () => { //This function will refresh the data on the page
+    //GraphQL "The Graph" queries
+    const APIURL ="https://api.thegraph.com/subgraphs/name/jordancarlson7/dsm?version=current";
     const tokensQuery = `
     {
       newPosts(orderBy: postId, orderDirection: desc) {
@@ -47,22 +39,18 @@ function Posts(props) {
       }
     }
 `;
-
     const client = createClient({
       url: APIURL,
     });
-
     const dataGraph = await client.query(tokensQuery).toPromise();
     setGraphArray(dataGraph.data.newPosts);
-    /**********URQL************************ */
   };
-  /**********GRAPH-CALL************************ */
-  /**********GRAPH************************ */
-  // useEffect(()=>{console.log('useEffect: ', graphArray)},[graphArray])
+  
   /**********HANDLERS************************ */
   function createPostHandler() {
     console.log("new post Click");
     setIsModal(!isModal);
+    refreshData();
   }
   /**********HANDLERS************************ */
 
@@ -94,22 +82,20 @@ function Posts(props) {
 }
 /******************REACT SUPPORT********** */
 export async function getServerSideProps() {
-  /* here we check to see the current environment variable */
-  /* and render a provider based on the environment we're in */
+  // Get current state of blockchain from contract version 1
   let provider;
-  if (process.env.ENVIRONMENT === "local") {
+  if (process.env.ENVIRONMENT === "local") { //LOCAL
     provider = new ethers.providers.JsonRpcProvider();
-  } else if (process.env.ENVIRONMENT === "testnet") {
+  } else if (process.env.ENVIRONMENT === "testnet") { //MUMBAI TESTNET
     provider = new ethers.providers.JsonRpcProvider(
       "https://rpc-mumbai.matic.today"
     );
   }
   // else {
-  //   provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com/')
+  //   provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com/') //PRODUCTION (REAL CRYPTO CURRENCY)
   // }
-
-  /**********URQL************************ */
-
+  
+  /**********URQL************************ */// Gets data from THE GRAPH version 2
   const APIURL =
     "https://api.thegraph.com/subgraphs/name/jordancarlson7/dsm?version=current";
 
@@ -130,12 +116,11 @@ export async function getServerSideProps() {
   const client = createClient({
     url: APIURL,
   });
-
   const dataGraph = await client.query(tokensQuery).toPromise();
   /**********URQL************************ */
-
-  const contract = new ethers.Contract(contractAddress, Feed.abi, provider);
-  const data = await contract.viewData();
+  //GETS data from the contract
+  const contract = new ethers.Contract(contractAddress, Feed.abi, provider); 
+  const data = await contract.viewData(); 
   return {
     props: {
       initialPosts: JSON.parse(JSON.stringify(data)),
