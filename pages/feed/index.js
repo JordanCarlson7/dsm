@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { createClient} from "urql";
 /*******CONTRACT */
 import { contractAddress } from "../../config";
-import Feed from "../../artifacts/contracts/Feed.sol/Feed.json";
+import Feed from "../../compiledContracts/Feed.sol/Feed.json";
 /*******CONTRACT */
 /*******COMPONENTS */
 import FeedCom from "../../components/Feed/feed-com";

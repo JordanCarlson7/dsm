@@ -6,7 +6,7 @@ import {useContext, useState, useRef} from 'react'
 import { useRouter } from 'next/router'
 /*******CONTRACT */
 import { contractAddress, ownerAddress } from "../../config";
-import Feed from "../../artifacts/contracts/Feed.sol/Feed.json";
+import Feed from "../../compiledContracts/Feed.sol/Feed.json";
 /*******CONTRACT */
 /**************GLOBALS */
 const client = create("https://ipfs.infura.io:5001/api/v0");
