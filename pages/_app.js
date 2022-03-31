@@ -9,11 +9,11 @@ import { useRouter } from "next/router";
 // import { ownerAddress } from '../config'
 // import { createClient } from 'urql'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps}) {
 
   /****************HOOKS***************************/
   // const [context, setContext] = useState('I/Context')
-  const [userAddr, setUserAddr] = useState(null);
+  const [userAddr, setUserAddr] = useState(false);
   console.log('initial state', userAddr)
   const [userBalance, setUserBalance] = useState(0);
 //   const contractAddr = "0x3E93C39cBDb5188fF913e55688b5e19Ca9903095";
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
       <AccountContext.Provider value={[userAddr, setUserAddr]}>
       <Navigate />
       {!userAddr && <Login />} 
-      <Component {...pageProps} />
+      {userAddr && <Component {...pageProps} />}
       </AccountContext.Provider>
     </Fragment>
   );

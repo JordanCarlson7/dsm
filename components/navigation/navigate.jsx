@@ -16,12 +16,17 @@ const Navigate = () => {
   return (
     <div className={classes.menu}>
       <div className={classes.menu__item}>
-        <Link href="/">Home</Link>
+        <Link href="https://github.com/JordanCarlson7/dsm">Decentralized Social Media</Link>
       </div>
-      <div className={classes.menu__item}>link 3</div>
-      <div className={classes.menu__divider}></div>
       <div className={classes.menu__item}>
-        <button onClick={logoutHandler}>Logout</button>
+        <Link href="https://thegraph.com/hosted-service/subgraph/jordancarlson7/dsm?version=current">The Graph</Link>
+      </div>
+      <div className={classes.menu__item}>
+        <Link href="https://mumbai.polygonscan.com/address/0xC2410455a5Be3380721C17cF8a43dA53D243c465">Chain</Link>
+      </div>
+      <div className={classes.menu__divider}></div>
+      <div className={classes.menu__item__right}>
+        {context && <button className={classes.btn} onClick={logoutHandler}>Logout</button>}
       </div>
     </div>
   );

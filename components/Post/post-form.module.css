@@ -14,11 +14,14 @@
 }
 
 .formContainer {
-    align-items: center;
+  align-items: center;
   display: flex;
   justify-content: center;
-  
   flex-direction: column;
+  width:45vw;
+  background-color: #f69000;
+  border-radius: 5px;
+  padding:20px;
 }
 
 
@@ -26,7 +29,10 @@
   /* Lined background */
   background-image: linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 0px);
   background-size: 100% 2em;
+  background-color: #00000000;
   border: none;
+  width: 100%;
+  color: black;
 
   /*
 Display the content on top of the lines.
@@ -35,4 +41,29 @@ The line height must be the same as the background size defined above
   background-position-y: 24px;
   line-height: 2em;
   margin: 20px;
+}
+
+.text:focus {
+  outline: none;
+}
+.textArea:focus {
+  outline: none;
+}
+.textArea {
+   /* Lined background */
+   background-image: linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 0px);
+   background-size: 100% 2em;
+   background-color: #00000000;
+   border: none;
+   width: 100%;
+   color: black;
+ 
+   /*
+ Display the content on top of the lines.
+ The line height must be the same as the background size defined above
+ */
+   background-position-y: 24px;
+   line-height: 2em;
+   margin: 20px;
+  height: 30vh;
 }

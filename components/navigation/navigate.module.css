@@ -4,15 +4,36 @@
 
     /* Border */
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    /* position: fixed; things underneath float*/
+    position: fixed;
+    width:100vw;
+    height:5vh;
+    background-color: #11222c;
     /* width: 100%; */
+}
+
+.btn {
+    background-color: inherit;
+    border: none;
 }
 
 .menu__item {
     /* Center the content horizontally */
     align-items: center;
     display: flex;
+    margin-right: 5px;
+    margin-left: 5px;
     padding: 5px;
+    padding-left: 10px;
+}
+.menu__item__right {
+    /* Center the content horizontally */
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 5px;
+    padding-right: 10px;
+    
 }
 
 .menu__hotkey {
@@ -25,6 +46,8 @@
     height: 1px;
 }
 
-.menu__item:hover {
-    background-color: aqua;
+.menu__item:hover, .btn:hover{
+    background-color: #f69000;
+    color: #11222c;
+    cursor: pointer;
 }

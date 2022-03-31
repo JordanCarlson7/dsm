@@ -1,37 +1,71 @@
-.container {
-  align-items: flex-start;
-  display: flex;
-  justify-content: flex-start;
-  padding: 20px;
-  margin-left: 33%;
-  margin-right: 33%;
-  border-left: 2px black solid;
-  border-right: 2px black solid;
-
+@media only screen and (max-width: 900px) {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    background-color: #1c5858;
+  }
+  .innerContainer {
+    margin-top: 5vh;
+  
+  }
+  
+  
+  .container__items {
+    /* Reset styles */
+    box-shadow: 0px 2px 10px black;
+    list-style-type: none;
+    margin: 0px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #f69000;
+    border-radius: 10px;
+    /* min-width: 20rem; */
+    width: 70vw;
+  }
 }
-.innerContainer {
-  /* Used to position the left vertical line */
-  position: relative;
-}
-.container__line {
-  /* Border */
-  border-right: 2px solid #aaa;
 
-  /* Positioned at the left */
-  left: 15px;
-  position: absolute;
-  bottom: 0px;
-
-  /* Take full height */
-  height: 50%;
+@media only screen and (min-width: 900px) {
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-left: 33%;
+    margin-right: 33%;
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    background-color: #1c5858;
+  }
+  .innerContainer {
+    margin-top: 5vh;
+  
+  }
+  
+  
+  .container__items {
+    /* Reset styles */
+    box-shadow: 0px 2px 10px black;
+    list-style-type: none;
+    margin: 0px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #f69000;
+    border-radius: 10px;
+    /* min-width: 20rem; */
+    width: 30vw;
+  }
 }
 
-.container__items {
-  /* Reset styles */
-  list-style-type: none;
-  margin: 0px;
-  padding: 0px;
-}
+
 
 .container__item {
   margin-bottom: 8px;
@@ -45,7 +79,7 @@
 
 .container__circle {
   /* Rounded border */
-  background-color: rgb(170, 170, 170);
+  background-color: #53b1b1;
   border-radius: 9999px;
   
   align-items: center;
@@ -53,6 +87,7 @@
   justify-content: center;
 
   /* Size */
+  margin: 2px 2px;
   height: 32px;
   width: 32px;
 }
@@ -60,9 +95,19 @@
 .container__title {
   /* Take available width */
   flex: 1;
+  padding-left: 5 px;
 }
 
 .container__desc {
   /* Make it align with the title */
-  margin-left: 48px;
+  margin-left: 18px;
+  border-left: black 1px solid;
+  padding-left: 24px;
+  margin-top: 5px;
+}
+
+.item__right {
+    /* Sticks to the right */
+    padding: 30px;
+
 }

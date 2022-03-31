@@ -1,0 +1,6 @@
+.feed {
+  background-color: #1c5858;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

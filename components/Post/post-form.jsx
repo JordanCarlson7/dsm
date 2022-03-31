@@ -3,6 +3,7 @@ import { create } from "ipfs-http-client";
 import { AccountContext } from "../../store/context";
 import { ethers } from "ethers";
 import {useContext, useState, useRef} from 'react'
+import { useRouter } from 'next/router'
 /*******CONTRACT */
 import { contractAddress, ownerAddress } from "../../config";
 import Feed from "../../artifacts/contracts/Feed.sol/Feed.json";
@@ -12,6 +13,7 @@ const client = create("https://ipfs.infura.io:5001/api/v0");
 /**************GLOBALS */
 
 const PostForm = (props) => {
+  const router = useRouter();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const [context, setContext] = useContext(AccountContext);
@@ -20,7 +22,7 @@ const PostForm = (props) => {
   const contract = new ethers.Contract(contractAddress, Feed.abi, signer); // need a signer to send transaction
   // const [post, setPost] = useState({id: 0, author: context, title: 'NO TITLE', content: 'NO CONTENT'});
   let post = {
-    id: 0,
+    // id: 0,
     author: "NO AUTHOR",
     title: "NO TITLE",
     content: "NO CONTENT",
@@ -30,10 +32,12 @@ const PostForm = (props) => {
   
   async function savePostContract(hash) {
     try {
-      const res = await contract.createPost(
+      const res = await contract.createPost( //contract will handle ids
         post.author,
         post.title,
         post.content,
+        hash.path,
+        post.alias
       ); // hash needs to be an arguement
       console.log("CONTRACT CREATEPOST (SUCCESS)", res);
     } catch (err) {
@@ -42,6 +46,9 @@ const PostForm = (props) => {
     // const temp = await contractTEMP.viewData()
     //   setPosts(temp)
     console.log("Add Post", post);
+    await props.reset();
+    props.setEdit(false);
+    // router.push('/feed');
   }
 
   async function hashIpfs() {
@@ -58,9 +65,10 @@ const PostForm = (props) => {
   async function submitPostHandler($event) {
     event.preventDefault();
     console.log("IN SUBMIT");
-    post.author = context;
+    post.author = context.address;
     post.title = titleEl.current.value;
     post.content = contentEl.current.value;
+    post.alias = context.alias;
     console.log('POST -> ', post)
 
     const hash = await hashIpfs();
@@ -84,7 +92,7 @@ const PostForm = (props) => {
         ></input>
         <label htmlFor="content">Content</label>
         <textarea
-          className={classes.text}
+          className={classes.textArea}
           name="content"
           placeholder="Enter your post here"
           ref={contentEl}

@@ -16,7 +16,7 @@ async function main() {
 
   // We get the contract to deploy
   const Feed = await hre.ethers.getContractFactory("Feed");
-  const feed = await Feed.deploy("Hello, Hardhat!"); //constructor
+  const feed = await Feed.deploy('Authored by ME'); 
 
   await feed.deployed();
   console.log("Feed deployed to:", feed.address);
