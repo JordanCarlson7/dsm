@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+# Decentralized Social Media!
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This project is a basic social media/blog implementation using smart contracts written in solidity, The Graph querying protocol, and nextJS framework. This is deployed on the Mumbia testNet of the Polygon network.
 
-Try running some of the following tasks:
+Visit https:// and login with your MetaMask wallet to join in the shared feed between any users of the network. You will even get to create your own nickname to be more user friendly than cryptic wallet addresses. 
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Make sure you have Test Matic tokens in your account. You can get those from this faucet: https://
