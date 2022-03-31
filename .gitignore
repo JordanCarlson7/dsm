@@ -14,6 +14,7 @@
 
 # production
 /build
+/graph
 
 # misc
 .DS_Store
