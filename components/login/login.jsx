@@ -94,7 +94,7 @@ const Login = (props) => {
         </h2>
         {getAlias && (
           <Fragment>
-            <input type="text" placeholder="alias" ref={inputAlias}></input>
+            <input className={classes.alias} type="text" placeholder="alias" ref={inputAlias}></input>
             <button className={classes.center} onClick={forwardFeed}>
               Submit Alias
             </button>

@@ -14,7 +14,10 @@
     no-repeat;
     z-index: -1;
 }
-
+.alias {
+  margin: 5px;
+  color: black;
+}
 .menu {
   align-items: center;
   display: flex;
